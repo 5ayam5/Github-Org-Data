@@ -1,17 +1,109 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+var org, repoC, commC;
+
+class Org extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: ''
+    };
+  }
+
+  render() {
+    return (
+      <input type="text" value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)}/>
+    );
+  }
+
+  updateInputValue(evt) {
+    this.setState({
+      inputValue: evt.target.value
+    });
+    org = evt.target.value;
+  }
+}
+
+class RepoC extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: '1'
+    };
+  }
+
+  render() {
+    return (
+      <input type="number" min="1" value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)}/>
+    );
+  }
+
+  updateInputValue(evt) {
+    this.setState({
+      inputValue: evt.target.value
+    });
+    repoC = evt.target.value;
+  }
+}
+
+class CommC extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: '1'
+    };
+  }
+
+  render() {
+    return (
+      <input type="number" min="1" value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)}/>
+    );
+  }
+
+  updateInputValue(evt) {
+    this.setState({
+      inputValue: evt.target.value
+    });
+    commC = evt.target.value;
+  }
+}
+
+class Submit extends React.Component {
+  render() {
+    return (
+      <button>Query</button>
+    )
+  }
+}
+
+class Query extends React.Component {
+  render() {
+    return (
+      <div className="query">
+        <form>
+          <Org />
+          <RepoC />
+          <CommC />
+          <Submit />
+        </form>
+      </div>
+    )
+  }
+}
+
+class Root extends React.Component {
+  render() {
+    return (
+      <div className="document">
+        <Query />
+      </div>
+    );
+  }
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Root />,
   document.getElementById('root')
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+)
